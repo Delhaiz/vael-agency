@@ -1,14 +1,12 @@
-// Stap 1: Importeer React
 import * as React from 'react'
-// Stap 2: definieer je component
+import Layout from '../components/layout'
+
 const IndexPage = () => {
   return (
-    <main>
-      <title>Home Page</title>
-      <h1>Welcome to Inghelbrecht Agency!</h1>
+      <Layout pageTitle="Welcome to Inghelbrecht Agency!">
       <p>Lorem ipsum</p>
-    </main>
+      </Layout>
   )
 }
-// Stap 3: Exporteer je component
+
 export default IndexPage
