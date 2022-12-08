@@ -24,31 +24,75 @@ const ArtistPage = ({
   },
 }) => {
   const image = getImage(artist.profilePicture.localFile)
-  const image1 = getImage(artist.picture1.localFile)
-  const image2 = getImage(artist.picture2.localFile)
-  const image3 = getImage(artist.picture3.localFile)
+  const picture1 = getImage(artist.picture1.localFile)
+  const picture2 = getImage(artist.picture2.localFile)
+  const picture3 = getImage(artist.picture3.localFile)
+
   return (
     <Layout pageTitle="Artist Template">
-      // Header JSX
+      <section className={header}>
+        <article className={headerInfo}>
+          {artist.artistName && (
+            <h3 className={artistName}>{artist.artistName}</h3>
+          )}
+          <div className={artistRoles}>
+            {roles.map((role, i) => (
+              <span>
+                {role.name} {i + 1 < roles.length && "- "}
+              </span>
+            ))}
+          </div>
+          <h1 className={fullName}>
+            {artist.firstName} {artist.lastName}
+          </h1>
+          <div
+            className={artistDescription}
+            dangerouslySetInnerHTML={{ __html: artist.description }}
+          />
+          <p>
+            <span className={artistInfo}>Email:</span> {artist.email}
+          </p>
+          <p>
+            <span className={artistInfo}>Phone:</span> {artist.phoneNumber}
+          </p>
+          <p>
+            <span className={artistInfo}>Height:</span> {artist.height}
+          </p>
+          <p>
+            <span className={artistInfo}>Shirt Size:</span> {artist.shirtSize}
+          </p>
+          <p>
+            <span className={artistInfo}>Shoe Size:</span> {artist.shoeSize}
+          </p>
+          <p>
+            <span className={artistInfo}>Origin:</span> {artist.origin}
+          </p>
+        </article>
+        <GatsbyImage
+          className={headerPicture}
+          image={image}
+          alt={artist.profilePicture.altText}
+        />
+      </section>
       <section className={artistPictures}>
-       {image1 && (
+       {picture1 && (
           <GatsbyImage
             className={artistPicture}
-            image={image1}
+            image={picture1}
             alt={artist.picture1.altText}
           />
         )}
-        {image2 && (
+        {picture2 && (
           <GatsbyImage
             className={artistPicture}
-            image={image2}
+            image={picture2}
             alt={artist.picture2.altText}
           />
         )}
-        {image3 && (
+        {picture3 && (
           <GatsbyImage
             className={artistPicture}
-            image={image3}
+            image={picture3}
             alt={artist.picture3.altText}
           />
         )}
@@ -111,7 +155,6 @@ query ($slug: String) {
     }
   }
 }
-
 `
 
 export default ArtistPage
